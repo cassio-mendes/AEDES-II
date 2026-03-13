@@ -13,4 +13,14 @@ public class MeuItem implements Item {
         else if(this.chave < item.chave) return -1;
         else return 0;
     }
+
+    @Override
+    public void alteraChave(Object chaveNova) {
+        this.chave = (Integer) chaveNova;
+    }
+
+    @Override
+    public Object recuperaChave() {
+        return this.chave;
+    }
 }
