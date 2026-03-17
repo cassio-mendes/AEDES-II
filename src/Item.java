@@ -1,7 +1,8 @@
 
 public interface Item {
 
-    int comparar(Object item);
-
+    int compara (Item i);
+    void alteraChave (Object chave);
+    Object recuperaChave ( ) ;
 
 }

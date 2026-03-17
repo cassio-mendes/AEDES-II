@@ -6,11 +6,21 @@ public class MeuItem implements Item {
     public MeuItem(int chave) { this.chave = chave; }
 
     @Override
-    public int comparar(Object it) {
-        MeuItem item = (MeuItem) it;
+    public int compara(Item i) {
+        MeuItem item = (MeuItem) i;
 
         if(this.chave > item.chave) return 1;
         else if(this.chave < item.chave) return -1;
         else return 0;
+    }
+
+    @Override
+    public void alteraChave(Object chave) {
+
+    }
+
+    @Override
+    public Object recuperaChave() {
+        return null;
     }
 }
