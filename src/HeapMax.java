@@ -16,11 +16,11 @@ public class HeapMax {
         Item x = this.itens[esquerda];
 
         while(j <= direita) {
-            if((j < direita) && (this.itens[j].comparar(this.itens[j + 1]) < 0)) {
+            if((j < direita) && (this.itens[j].compara(this.itens[j + 1]) < 0)) {
                 j++;
             }
 
-            if(x.comparar(this.itens[j]) >= 0) break;
+            if(x.compara(this.itens[j]) >= 0) break;
             this.itens[esquerda] = this.itens[j];
 
             esquerda = j;
@@ -58,7 +58,7 @@ public class HeapMax {
         Item x = this.itens[i];
         x.alteraChave(chaveNova);
 
-        while((i > 1) && (x.comparar(this.itens[i/2]) >= 0)) {
+        while((i > 1) && (x.compara(this.itens[i/2]) >= 0)) {
             this.itens[i] = this.itens[i/2];
             i /= 2;
         }
