@@ -1,3 +1,4 @@
+package aulaHeaps;
 
 public class HeapMax {
 
