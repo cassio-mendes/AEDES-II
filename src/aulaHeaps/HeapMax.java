@@ -52,9 +52,8 @@ public class HeapMax {
     }
 
     public void aumentaChave(int i, Object chaveNova) throws Exception {
-        if(chaveNova == null) {
+        if(chaveNova == null)
             throw new Exception("Erro: nova chave não pode ser nula");
-        }
 
         Item x = this.itens[i];
         x.alteraChave(chaveNova);
@@ -73,7 +72,7 @@ public class HeapMax {
 
         Object chaveNova = x.recuperaChave();
         this.itens[this.n] = x;
-        this.itens[n].alteraChave(new Integer(Integer.MIN_VALUE));
+        this.itens[n].alteraChave(Integer.MIN_VALUE);
         this.aumentaChave(this.n, chaveNova);
     }
 
