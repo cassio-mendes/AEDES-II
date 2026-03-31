@@ -13,6 +13,8 @@ public class ArvoreBinaria {
         this.raiz.profundidade = 0;
     }
 
+    public ArvoreBinaria() { this.raiz.profundidade = 0; }
+
     private ArvoreBinaria(int profundidade) {
         this.raiz.profundidade = profundidade;
     }
