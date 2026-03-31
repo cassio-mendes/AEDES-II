@@ -6,6 +6,7 @@ public class ArvoreBinaria {
 
     private Node raiz = new Node();
     private ArvoreBinaria subArvoreEsq, subArvoreDir;
+    private int numNodes = 0;
 
     public ArvoreBinaria(Double valorRaiz) {
         this.raiz.valor = valorRaiz;
@@ -32,6 +33,8 @@ public class ArvoreBinaria {
                 this.subArvoreDir = new ArvoreBinaria(this.raiz.profundidade+1);
             this.subArvoreDir.insere(valor);
         }
+
+        this.numNodes++;
     }
 
     public void printArvore() {
@@ -55,5 +58,8 @@ public class ArvoreBinaria {
     }
 
     //altura = log(base 2) n° de nós ---> APENAS PARA ÁRVORES BALANCEADAS!!
+    public int getAltura() {
+        return (int)(Math.floor(Math.log(this.numNodes) / Math.log(2)));
+    }
 
 }
