@@ -2,13 +2,12 @@ package aulaArvores;
 
 public class ArvoreBinaria {
 
-    private class Node { int chave; Object valor; int profundidade; }
+    private class Node { Double valor; int profundidade; }
 
     private Node raiz = new Node();
     private ArvoreBinaria subArvoreEsq, subArvoreDir;
 
-    public ArvoreBinaria(int chaveRaiz, Object valorRaiz) {
-        this.raiz.chave = chaveRaiz;
+    public ArvoreBinaria(Double valorRaiz) {
         this.raiz.valor = valorRaiz;
         this.raiz.profundidade = 0;
     }
@@ -19,25 +18,24 @@ public class ArvoreBinaria {
         this.raiz.profundidade = profundidade;
     }
 
-    public void insere(int chave, Object valor) {
+    public void insere(Double valor) {
         if(this.raiz.valor == null) {
-            this.raiz.chave = chave;
             this.raiz.valor = valor;
 
-        } else if(chave < this.raiz.chave) {
+        } else if(valor < this.raiz.valor) {
             if(this.subArvoreEsq == null)
                 this.subArvoreEsq = new ArvoreBinaria(this.raiz.profundidade+1);
-            this.subArvoreEsq.insere(chave, valor);
+            this.subArvoreEsq.insere(valor);
 
         } else {
             if(this.subArvoreDir == null)
                 this.subArvoreDir = new ArvoreBinaria(this.raiz.profundidade+1);
-            this.subArvoreDir.insere(chave, valor);
+            this.subArvoreDir.insere(valor);
         }
     }
 
     public void printArvore() {
-        System.out.println("Profundidade = " + this.raiz.profundidade + " | Chave = " + this.raiz.chave + " | Valor = " + this.raiz.valor);
+        System.out.println("Profundidade = " + this.raiz.profundidade + " | Valor = " + this.raiz.valor);
 
         if(this.subArvoreEsq != null)
             this.subArvoreEsq.printArvore();
@@ -46,14 +44,16 @@ public class ArvoreBinaria {
             this.subArvoreDir.printArvore();
     }
 
-    public Object get(int chave) {
-        if(this.raiz.chave == chave) return this.raiz.valor;
+    public Double get(Double valor) {
+        if(this.raiz.valor.equals(valor)) return this.raiz.valor;
 
-        if(this.subArvoreEsq != null) return this.subArvoreEsq.get(chave);
+        if(this.subArvoreEsq != null) return this.subArvoreEsq.get(valor);
 
-        if(this.subArvoreDir != null) return this.subArvoreDir.get(chave);
+        if(this.subArvoreDir != null) return this.subArvoreDir.get(valor);
 
         return null;
     }
+
+    //altura = log(base 2) n° de nós ---> APENAS PARA ÁRVORES BALANCEADAS!!
 
 }
