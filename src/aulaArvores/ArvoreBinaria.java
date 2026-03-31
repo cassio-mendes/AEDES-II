@@ -35,7 +35,7 @@ public class ArvoreBinaria {
     }
 
     public void printArvore() {
-        System.out.println("P = " + this.raiz.profundidade + " : Chave = " + this.raiz.chave + " : Valor = " + this.raiz.valor);
+        System.out.println("Profundidade = " + this.raiz.profundidade + " | Chave = " + this.raiz.chave + " | Valor = " + this.raiz.valor);
 
         if(this.subArvoreEsq != null)
             this.subArvoreEsq.printArvore();
