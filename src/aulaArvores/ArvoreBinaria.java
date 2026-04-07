@@ -2,7 +2,7 @@ package aulaArvores;
 
 public class ArvoreBinaria {
 
-    private class Node { Integer valor; int profundidade; }
+    private static class Node { Integer valor; int profundidade; }
 
     private Node raiz = new Node();
     private ArvoreBinaria subArvoreEsq, subArvoreDir;
