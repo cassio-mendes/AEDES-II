@@ -2,7 +2,7 @@ package aulaArvores;
 
 public class ArvoreBinaria {
 
-    private static class Node { Integer valor; int profundidade; }
+    private static class Node { Item valor; int profundidade; }
 
     private Node raiz = new Node();
     private ArvoreBinaria subArvoreEsq, subArvoreDir;
@@ -16,9 +16,9 @@ public class ArvoreBinaria {
 
     public void insere(Integer valor) {
         if(this.raiz.valor == null) {
-            this.raiz.valor = valor;
+            this.raiz.valor = new MeuItem(valor);
 
-        } else if(valor < this.raiz.valor) {
+        } else if(valor < (Integer)this.raiz.valor.recuperaChave()) {
             if(this.subArvoreEsq == null)
                 this.subArvoreEsq = new ArvoreBinaria(this.raiz.profundidade+1);
             this.subArvoreEsq.insere(valor);
@@ -43,7 +43,9 @@ public class ArvoreBinaria {
     }
 
     public Integer get(Integer valor) {
-        if(this.raiz.valor.equals(valor)) return this.raiz.valor;
+        Integer chaveItem = (Integer)this.raiz.valor.recuperaChave();
+
+        if(chaveItem.equals(valor)) return chaveItem;
 
         if(this.subArvoreEsq != null) return this.subArvoreEsq.get(valor);
 
@@ -62,12 +64,14 @@ public class ArvoreBinaria {
     }
 
     private ArvoreBinaria removerValor(Integer valor) {
-        if(valor < this.raiz.valor) {
+        Integer chaveItem = (Integer)this.raiz.valor.recuperaChave();
+
+        if(valor < chaveItem) {
             this.subArvoreEsq = this.subArvoreEsq.removerValor(valor);
             return this;
         }
 
-        if(valor > this.raiz.valor) {
+        if(valor > chaveItem) {
             this.subArvoreDir = this.subArvoreDir.removerValor(valor);
             return this;
         }

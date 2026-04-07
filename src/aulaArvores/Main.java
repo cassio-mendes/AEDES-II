@@ -31,7 +31,7 @@ public class Main {
         System.out.println("\n\nNúmero " + chave + ": " + resposta);
 
         chave = 100;
-        resposta = arvore.get(chave) != null ? "Existe" : "Não existe";
+        resposta = arvore.get(chave) != null ? "Existe\n" : "Não existe\n";
         System.out.println("Número " + chave + ": " + resposta);
 
         //Removendo nó folha
