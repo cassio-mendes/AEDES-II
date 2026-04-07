@@ -57,17 +57,23 @@ public class ArvoreBinaria {
         return (int)(Math.floor(Math.log(this.numNodes) / Math.log(2)));
     }
 
-    public boolean remover(Integer valor) {
-        if(this.raiz.valor.equals(valor)) {
-            this.raiz = new Node();
-            return true;
+    public void remover(Integer valor) {
+        removerValor(valor);
+    }
+
+    private ArvoreBinaria removerValor(Integer valor) {
+        if(valor < this.raiz.valor) {
+            this.subArvoreEsq = this.subArvoreEsq.removerValor(valor);
+            return this;
         }
 
-        if(this.subArvoreEsq != null) { this.subArvoreEsq.remover(valor); }
+        if(valor > this.raiz.valor) {
+            this.subArvoreDir = this.subArvoreDir.removerValor(valor);
+            return this;
+        }
 
-        if(this.subArvoreDir != null) { this.subArvoreDir.remover(valor); }
-
-        return false;
+        //Achou o nó a ser removido
+        return null;
     }
 
     public void printPreOrdem() {

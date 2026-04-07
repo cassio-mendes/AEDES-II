@@ -34,7 +34,9 @@ public class Main {
         resposta = arvore.get(chave) != null ? "Existe" : "Não existe";
         System.out.println("Número " + chave + ": " + resposta);
 
-
+        //Removendo nó folha
+        arvore.remover(98);
+        arvore.printArvore();
     }
 
 }
