@@ -18,15 +18,18 @@ public class ArvoreBinaria {
         if(this.raiz.valor == null) {
             this.raiz.valor = new MeuItem(valor);
 
-        } else if(valor < (Integer)this.raiz.valor.recuperaChave()) {
-            if(this.subArvoreEsq == null)
-                this.subArvoreEsq = new ArvoreBinaria(this.raiz.profundidade+1);
-            this.subArvoreEsq.insere(valor);
-
         } else {
-            if(this.subArvoreDir == null)
-                this.subArvoreDir = new ArvoreBinaria(this.raiz.profundidade+1);
-            this.subArvoreDir.insere(valor);
+            MeuItem novoValor = new MeuItem(valor);
+            if(this.raiz.valor.compara(novoValor) == -1) { //Se o novo valor é menor que a raiz, vai pra esquerda
+                if(this.subArvoreEsq == null)
+                    this.subArvoreEsq = new ArvoreBinaria(this.raiz.profundidade+1);
+                this.subArvoreEsq.insere(valor);
+
+            } else {
+                if (this.subArvoreDir == null)
+                    this.subArvoreDir = new ArvoreBinaria(this.raiz.profundidade + 1);
+                this.subArvoreDir.insere(valor);
+            }
         }
 
         this.numNodes++;
@@ -64,14 +67,14 @@ public class ArvoreBinaria {
     }
 
     private ArvoreBinaria removerValor(Integer valor) {
-        Integer chaveItem = (Integer)this.raiz.valor.recuperaChave();
+        MeuItem novoValor = new MeuItem(valor);
 
-        if(valor < chaveItem) {
+        if(this.raiz.valor.compara(novoValor) == -1) {
             this.subArvoreEsq = this.subArvoreEsq.removerValor(valor);
             return this;
         }
 
-        if(valor > chaveItem) {
+        if(this.raiz.valor.compara(novoValor) == 1) {
             this.subArvoreDir = this.subArvoreDir.removerValor(valor);
             return this;
         }
