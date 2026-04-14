@@ -30,6 +30,9 @@ public class Main {
         System.out.print("\nPós-Ordem: ");
         arvore.printPosOrdem(); //Esquerda -> Direita -> Raiz
 
+        System.out.print("\nOrdem decrescente: ");
+        arvore.printDecrescente();
+
         System.out.println("\n");
         buscarCharacter('A', arvore);
         buscarCharacter('Q', arvore);

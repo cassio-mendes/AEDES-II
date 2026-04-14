@@ -117,10 +117,16 @@ public class ArvoreBinaria {
         if(this.subArvoreDir != null) { this.subArvoreDir.printPreOrdem(); }
     }
 
-    public void printEmOrdem() {
+    public void printEmOrdem() { //Em ordem crescente
         if(this.subArvoreEsq != null) { this.subArvoreEsq.printEmOrdem(); }
         System.out.print(this.raiz.valor.recuperaChave() + " ");
         if(this.subArvoreDir != null) { this.subArvoreDir.printEmOrdem(); }
+    }
+
+    public void printDecrescente() {
+        if(this.subArvoreDir != null) { this.subArvoreDir.printDecrescente(); }
+        System.out.print(this.raiz.valor.recuperaChave() + " ");
+        if(this.subArvoreEsq != null) { this.subArvoreEsq.printDecrescente(); }
     }
 
     public void printPosOrdem() {
