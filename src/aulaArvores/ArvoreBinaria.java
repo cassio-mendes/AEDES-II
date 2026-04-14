@@ -73,25 +73,16 @@ public class ArvoreBinaria {
 
         if(valor instanceof Integer) {
             Integer chaveItem = (Integer)this.raiz.valor.recuperaChave();
-
             if(chaveItem.equals(valor)) return chaveItem;
 
-            if(this.subArvoreEsq != null) return this.subArvoreEsq.get(valor);
-
-            if(this.subArvoreDir != null) return this.subArvoreDir.get(valor);
-
-            return null;
         } else {
-            Character chaveItem = (Character) this.raiz.valor.recuperaChave();
-
+            Character chaveItem = (Character)this.raiz.valor.recuperaChave();
             if(chaveItem.equals(valor)) return chaveItem;
-
-            if(this.subArvoreEsq != null) return this.subArvoreEsq.get(valor);
-
-            if(this.subArvoreDir != null) return this.subArvoreDir.get(valor);
-
-            return null;
         }
+
+        if(this.subArvoreEsq != null) return this.subArvoreEsq.get(valor);
+        if(this.subArvoreDir != null) return this.subArvoreDir.get(valor);
+        return null;
     }
 
     //altura = log(base 2) n° de nós ---> APENAS PARA ÁRVORES BALANCEADAS!!

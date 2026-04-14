@@ -30,30 +30,20 @@ public class Main {
         System.out.print("\nPós-Ordem: ");
         arvore.printPosOrdem(); //Esquerda -> Direita -> Raiz
 
-        //buscarInteger(arvore);
-        buscarCharacter(arvore);
+        System.out.println("\n");
+        buscarCharacter('A', arvore);
+        buscarCharacter('Q', arvore);
     }
 
-    static void buscarInteger(ArvoreBinaria arvore) {
-        //Buscando valores na árvore
-        int chave = 5;
-        String resposta = arvore.get(chave) != null ? "Existe" : "Não existe";
-        System.out.println("\n\nNúmero " + chave + ": " + resposta);
-
-        chave = 100;
-        resposta = arvore.get(chave) != null ? "Existe\n" : "Não existe\n";
-        System.out.println("Número " + chave + ": " + resposta);
+    //Buscando valores na árvore
+    static void buscarInteger(int numero, ArvoreBinaria arvore) {
+        String resposta = arvore.get(numero) != null ? "Existe" : "Não existe";
+        System.out.println("Número " + numero + ": " + resposta);
     }
 
-    static void buscarCharacter(ArvoreBinaria arvore) {
-        //Buscando valores na árvore
-        char chave = 'A';
-        String resposta = arvore.get(chave) != null ? "Existe" : "Não existe";
-        System.out.println("\n\nLetra " + chave + ": " + resposta);
-
-        chave = 'Q';
-        resposta = arvore.get(chave) != null ? "Existe\n" : "Não existe\n";
-        System.out.println("Letra " + chave + ": " + resposta);
+    static void buscarCharacter(char caracter, ArvoreBinaria arvore) {
+        String resposta = arvore.get(caracter) != null ? "Existe" : "Não existe";
+        System.out.println("Letra " + caracter + ": " + resposta);
     }
 
 }
