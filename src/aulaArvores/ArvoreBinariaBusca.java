@@ -1,5 +1,7 @@
 package aulaArvores;
 
+import java.util.PriorityQueue;
+
 public class ArvoreBinariaBusca {
 
     private static class Node { Item valor; int profundidade; }
@@ -123,16 +125,34 @@ public class ArvoreBinariaBusca {
         if(this.subArvoreDir != null) { this.subArvoreDir.printEmOrdem(); }
     }
 
+    public void printPosOrdem() {
+        if(this.subArvoreEsq != null) { this.subArvoreEsq.printPosOrdem(); }
+        if(this.subArvoreDir != null) { this.subArvoreDir.printPosOrdem(); }
+        System.out.print(this.raiz.valor.recuperaChave() + " ");
+    }
+
     public void printDecrescente() {
         if(this.subArvoreDir != null) { this.subArvoreDir.printDecrescente(); }
         System.out.print(this.raiz.valor.recuperaChave() + " ");
         if(this.subArvoreEsq != null) { this.subArvoreEsq.printDecrescente(); }
     }
 
-    public void printPosOrdem() {
-        if(this.subArvoreEsq != null) { this.subArvoreEsq.printPosOrdem(); }
-        if(this.subArvoreDir != null) { this.subArvoreDir.printPosOrdem(); }
-        System.out.print(this.raiz.valor.recuperaChave() + " ");
+    public void printNiveis() { //Imprime cada nível, em ordem crescente
+        PriorityQueue<Character> fila = new PriorityQueue<>();
+
+        ItemChar item = (ItemChar) this.raiz.valor;
+        fila.add((Character)item.recuperaChave());
+
+        while(!fila.isEmpty()) {
+            Character i = fila.poll();
+            System.out.print(i + " ");
+
+            item = (ItemChar) this.subArvoreEsq.raiz.valor;
+            fila.add((Character)item.recuperaChave());
+
+            item = (ItemChar) this.subArvoreDir.raiz.valor;
+            fila.add((Character)item.recuperaChave());
+        }
     }
 
 }

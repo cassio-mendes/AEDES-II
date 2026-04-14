@@ -36,6 +36,9 @@ public class Main {
         System.out.println("\n");
         buscarCharacter('A', arvore);
         buscarCharacter('Q', arvore);
+
+        System.out.println("Impressão por níveis: ");
+        arvore.printNiveis();
     }
 
     //Buscando valores na árvore
@@ -47,10 +50,6 @@ public class Main {
     static void buscarCharacter(char caracter, ArvoreBinariaBusca arvore) {
         String resposta = arvore.get(caracter) != null ? "Existe" : "Não existe";
         System.out.println("Letra " + caracter + ": " + resposta);
-    }
-
-    static boolean checkBST(ArvoreBinariaBusca arvore) {
-
     }
 
 }
