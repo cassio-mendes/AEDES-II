@@ -4,7 +4,7 @@ public class Main {
 
     static void main(String[] args) {
         //Preenchendo árvore
-        ArvoreBinaria arvore = new ArvoreBinaria();
+        ArvoreBinariaBusca arvore = new ArvoreBinariaBusca();
 
         /*Integer[] numeros = {20, 5, 22, 2, 9, 21, 98};
         for (int i = 0; i < numeros.length; i++) {
@@ -39,14 +39,18 @@ public class Main {
     }
 
     //Buscando valores na árvore
-    static void buscarInteger(int numero, ArvoreBinaria arvore) {
+    static void buscarInteger(int numero, ArvoreBinariaBusca arvore) {
         String resposta = arvore.get(numero) != null ? "Existe" : "Não existe";
         System.out.println("Número " + numero + ": " + resposta);
     }
 
-    static void buscarCharacter(char caracter, ArvoreBinaria arvore) {
+    static void buscarCharacter(char caracter, ArvoreBinariaBusca arvore) {
         String resposta = arvore.get(caracter) != null ? "Existe" : "Não existe";
         System.out.println("Letra " + caracter + ": " + resposta);
+    }
+
+    static boolean checkBST(ArvoreBinariaBusca arvore) {
+
     }
 
 }
