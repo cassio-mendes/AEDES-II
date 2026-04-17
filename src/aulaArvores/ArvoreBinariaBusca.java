@@ -143,15 +143,21 @@ public class ArvoreBinariaBusca {
         ItemChar item = (ItemChar) this.raiz.valor;
         fila.add((Character)item.recuperaChave());
 
+        boolean flag = true;
+
         while(!fila.isEmpty()) {
             Character i = fila.poll();
             System.out.print(i + " ");
 
-            item = (ItemChar) this.subArvoreEsq.raiz.valor;
-            fila.add((Character)item.recuperaChave());
+            if(flag) {
+                item = (ItemChar) this.subArvoreEsq.raiz.valor;
+                fila.add((Character)item.recuperaChave());
+            } else {
+                item = (ItemChar) this.subArvoreDir.raiz.valor;
+                fila.add((Character)item.recuperaChave());
+            }
 
-            item = (ItemChar) this.subArvoreDir.raiz.valor;
-            fila.add((Character)item.recuperaChave());
+            flag = !flag;
         }
     }
 
