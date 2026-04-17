@@ -99,8 +99,22 @@ public class ArvoreBinaria {
         this.testa(this.raiz);
     }
 
-    //public Item alteraChave(Item chave, Object novaChave) {
+    public Item alteraChave(Item chave, Object novaChave) {
+        return alteraChave(chave, novaChave, this.raiz);
+    }
 
-    //}
+    private Item alteraChave(Item chave, Object novaChave, No celula) {
+        if(celula == null) return null; //A chave não está na árvore
+
+        if(chave.compara(celula.reg) < 0)
+            return alteraChave(chave, novaChave, celula.esq); //Vai pra esquerda
+
+        if(chave.compara(celula.reg) > 0)
+            return alteraChave(chave, novaChave, celula.dir); //Vai pra direita
+
+        //Achou a chave na árvore
+        celula.reg.alteraChave(novaChave); //Altera o valor
+        return celula.reg; //Retorna o novo valor alterado
+    }
 
 }

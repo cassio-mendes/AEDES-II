@@ -17,12 +17,11 @@ public class MeuItem implements Item {
     }
 
     public void alteraChave(Object chave) {
-        Integer ch = (Integer) chave;
-        this.chave = ch.intValue();
+        this.chave = (Integer) chave;
     }
 
     public Object recuperaChave() {
-        return new Integer(this.chave);
+        return this.chave;
     }
 
     public String toString() {

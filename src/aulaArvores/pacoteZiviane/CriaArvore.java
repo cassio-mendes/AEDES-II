@@ -17,6 +17,9 @@ public class CriaArvore {
         }
 
         dicionario.imprime();
+        dicionario.alteraChave(new MeuItem(12), 5);
+        System.out.println();
+        dicionario.imprime();
     }
 
 }
