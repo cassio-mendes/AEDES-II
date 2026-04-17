@@ -6,15 +6,15 @@ public class Main {
         //Preenchendo árvore
         ArvoreBinariaBusca arvore = new ArvoreBinariaBusca();
 
-        /*Integer[] numeros = {20, 5, 22, 2, 9, 21, 98};
+        Integer[] numeros = {20, 5, 22, 2, 9, 21, 98};
         for (int i = 0; i < numeros.length; i++) {
             arvore.insere(numeros[i]);
-        }*/
+        }
 
-        Character[] chars = {'C', 'A', 'B', 'M', 'Z'};
+        /*Character[] chars = {'C', 'A', 'B', 'M', 'Z'};
         for (int i = 0; i < chars.length; i++) {
             arvore.insere(chars[i]);
-        }
+        }*/
 
         //Imprimindo valores e profundidade dos nós
         arvore.printArvore();
@@ -34,11 +34,12 @@ public class Main {
         arvore.printDecrescente();
 
         System.out.println("\n");
-        buscarCharacter('A', arvore);
-        buscarCharacter('Q', arvore);
+        System.out.println("Total da árvore: " + arvore.somarNodes());
+        //buscarCharacter('A', arvore);
+        //buscarCharacter('Q', arvore);
 
-        System.out.println("Impressão por níveis: ");
-        arvore.printNiveis();
+        //System.out.println("Impressão por níveis: ");
+        //arvore.printNiveis();
     }
 
     //Buscando valores na árvore

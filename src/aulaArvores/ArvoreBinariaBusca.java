@@ -161,4 +161,14 @@ public class ArvoreBinariaBusca {
         }
     }
 
+    public int somarNodes() { //Retorna a soma de todos os valores na árvore
+        int soma = 0;
+
+        if(this.subArvoreEsq != null) soma += this.subArvoreEsq.somarNodes();
+        soma += (Integer)this.raiz.valor.recuperaChave();
+        if(this.subArvoreDir != null) soma += this.subArvoreDir.somarNodes();
+
+        return soma;
+    }
+
 }
