@@ -117,4 +117,22 @@ public class ArvoreBinaria {
         return celula.reg; //Retorna o novo valor alterado
     }
 
+    //Verifica se é uma árvore binária de busca
+    public boolean checkBST() {
+        return checkBST(this.raiz);
+    }
+
+    private boolean checkBST(No celula) {
+        if(celula.esq != null && celula.reg.compara(celula.esq.reg) < 0)
+            return false;
+
+        if(celula.dir != null && celula.reg.compara(celula.dir.reg) > 0)
+            return false;
+
+        checkBST(celula.esq);
+        checkBST(celula.dir);
+
+        return true;
+    }
+
 }

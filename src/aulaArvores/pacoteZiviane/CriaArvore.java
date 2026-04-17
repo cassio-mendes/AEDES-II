@@ -20,6 +20,9 @@ public class CriaArvore {
         dicionario.alteraChave(new MeuItem(12), 5);
         System.out.println();
         dicionario.imprime();
+        System.out.println();
+
+        System.out.println(dicionario.checkBST());
     }
 
 }
