@@ -1,4 +1,4 @@
-package aulaArvores;
+package aulaArvores.meuCodigo;
 
 import java.util.PriorityQueue;
 

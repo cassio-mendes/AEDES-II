@@ -1,14 +1,16 @@
-package aulaArvores;
+package aulaArvores.meuCodigo;
 
-public class MeuItem implements Item {
+public class ItemChar implements Item {
 
-    private int chave; //Valor
+    private char chave; //Valor
 
-    public MeuItem(int chave) { this.chave = chave; }
+    public ItemChar(char chave) {
+        this.chave = chave;
+    }
 
     @Override
     public int compara(Item i) {
-        MeuItem item = (MeuItem) i;
+        ItemChar item = (ItemChar)i;
 
         if(this.chave > item.chave) return 1;
         else if(this.chave < item.chave) return -1;
@@ -17,16 +19,11 @@ public class MeuItem implements Item {
 
     @Override
     public void alteraChave(Object chave) {
-        this.chave = (Integer)chave;
+        this.chave = (Character)chave;
     }
 
     @Override
     public Object recuperaChave() {
         return this.chave;
-    }
-
-    @Override
-    public String toString() {
-        return this.chave + "";
     }
 }
