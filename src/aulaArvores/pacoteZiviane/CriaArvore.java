@@ -16,13 +16,23 @@ public class CriaArvore {
             chave = Integer.parseInt(in.readLine());
         }
 
+        System.out.println("Árvore em ordem:");
         dicionario.imprime();
-        dicionario.alteraChave(new MeuItem(12), 5);
-        System.out.println();
-        dicionario.imprime();
-        System.out.println();
+        dicionario.printArvore();
 
+        System.out.println("Árvore pós alteração de chave");
+        dicionario.alteraChave(new MeuItem(99), 5);
+        dicionario.imprime();
+
+        System.out.print("A árvore é uma ABB: ");
         System.out.println(dicionario.checkBST());
+
+        ArvoreBinaria arvoreBalanceada = dicionario.ordenaABB();
+        System.out.println("Nova árvore:");
+        arvoreBalanceada.imprime();
+        arvoreBalanceada.printArvore();
     }
+
+
 
 }
