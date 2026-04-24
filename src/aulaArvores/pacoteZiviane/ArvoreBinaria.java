@@ -1,12 +1,65 @@
 package aulaArvores.pacoteZiviane;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ArvoreBinaria {
     private static class No {
         Item reg;
         No esq, dir;
+        int profundidade;
     }
 
     private No raiz;
+
+    public void printArvore() {
+        printArvore(this.raiz);
+    }
+
+    private void printArvore(No node) {
+        System.out.println("Profundidade = " + node.profundidade + " | Valor = " + node.reg.recuperaChave());
+
+        if(node.esq != null) printArvore(node.esq);
+        if(node.dir != null) printArvore(node.dir);
+    }
+
+    public ArvoreBinaria ordenaABB() {
+        //Armazena os valores da árvore em ordem crescente
+        List<Object> vetor = new ArrayList<>();
+        percorreABB(vetor, this.raiz);
+
+        //Preenche a nova árvore recursivamente
+        ArvoreBinaria retorno = new ArvoreBinaria();
+        preencheArvoreBalanceada(retorno, vetor);
+        return retorno;
+    }
+
+    private void preencheArvoreBalanceada(ArvoreBinaria retorno, List<Object> vetor) {
+        if(vetor.isEmpty()) return;
+
+        int indMeio = vetor.size()/2;
+        List<Object> esquerda = new ArrayList<>();
+        List<Object> direita = new ArrayList<>();
+        Object itemMeio = vetor.get(indMeio);
+
+        for (int i = 0; i < indMeio; i++) {
+            esquerda.add(vetor.get(i));
+        }
+
+        for (int i = indMeio + 1; i < vetor.size(); i++) {
+            direita.add(vetor.get(i));
+        }
+
+        retorno.insere(new MeuItem((Integer)itemMeio));
+        preencheArvoreBalanceada(retorno, esquerda);
+        preencheArvoreBalanceada(retorno, direita);
+    }
+
+    private void percorreABB(List<Object> vetor, No node) {
+        if(node.esq != null) percorreABB(vetor, node.esq);
+        vetor.add(node.reg.recuperaChave());
+        if(node.dir != null) percorreABB(vetor, node.dir);
+    }
 
     private void central(No p) { //Em-Ordem
         if (p != null) {
@@ -23,14 +76,16 @@ public class ArvoreBinaria {
         else return p.reg;
     }
 
-    private No insere(Item reg, No p) {
+    private No insere(Item reg, No p, int profundidade) {
         if (p == null) {
             p = new No();
             p.reg = reg;
             p.esq = null;
             p.dir = null;
-        } else if (reg.compara(p.reg) < 0) p.esq = insere(reg, p.esq);
-        else if (reg.compara(p.reg) > 0) p.dir = insere(reg, p.dir);
+            p.profundidade = profundidade;
+
+        } else if (reg.compara(p.reg) < 0) p.esq = insere(reg, p.esq, profundidade+1);
+        else if (reg.compara(p.reg) > 0) p.dir = insere(reg, p.dir, profundidade+1);
         else System.out.println("Erro: Registro ja existente");
         return p;
     }
@@ -65,7 +120,7 @@ public class ArvoreBinaria {
     }
 
     public void insere(Item reg) {
-        this.raiz = this.insere(reg, this.raiz);
+        this.raiz = this.insere(reg, this.raiz, 1);
     }
 
     public void retira(Item reg) {
@@ -129,8 +184,8 @@ public class ArvoreBinaria {
         if(celula.dir != null && celula.reg.compara(celula.dir.reg) > 0)
             return false;
 
-        checkBST(celula.esq);
-        checkBST(celula.dir);
+        if(celula.esq != null) return checkBST(celula.esq);
+        if(celula.dir != null) return checkBST(celula.dir);
 
         return true;
     }
