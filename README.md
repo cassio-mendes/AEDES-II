@@ -6,3 +6,4 @@
 * Árvores Binárias de Busca
 * Heap e Heapsort
 * Tipos Abstratos de Dados (TAD)
+* Árvores B
