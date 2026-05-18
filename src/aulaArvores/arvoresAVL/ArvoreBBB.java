@@ -1,8 +1,5 @@
 package aulaArvores.arvoresAVL;
 
-import aulaArvores.pacoteZiviane.Item;
-import aulaArvores.pacoteZiviane.MeuItem;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +22,139 @@ public class ArvoreBBB {
 
         if(node.esq != null) printArvore(node.esq);
         if(node.dir != null) printArvore(node.dir);
+    }
+
+    private No insere(Item reg, No p, int profundidade, boolean ok) {
+        if (p == null) {
+            p = new No();
+            p.reg = reg;
+            p.esq = null;
+            p.dir = null;
+            p.profundidade = profundidade;
+            ok = true;
+            p.balanceamento = 0;
+            this.mudouAltura = true;
+
+        } else if (reg.compara(p.reg) == 0) ok = false; //Não insere
+        else if (reg.compara(p.reg) < 0) {
+            p.esq = insere(reg, p.esq, profundidade + 1, ok);
+
+            if(this.mudouAltura) { //Precisa rebalancear
+                switch(p.balanceamento) {
+                    case 1:
+                        p.balanceamento = 0;
+                        this.mudouAltura = false; break;
+
+                    case 0:
+                        p.balanceamento = -1; break; //mudouAltura continua true
+
+                    case -1: //Precisa rebalancear!!
+                        if(p.esq.balanceamento == 1) {
+
+                            //Rotação Dupla ED:
+                            No filho = p.esq; //A
+                            No neto = filho.dir; //B
+
+                            filho.dir = neto.esq; //S2
+                            neto.esq = filho; //A
+
+                            p.esq = neto.dir; //S3
+                            neto.dir = p; //C
+
+                            switch(neto.balanceamento) {
+                                case -1:
+                                    p.balanceamento = 1; //Inseriu X1
+                                    filho.balanceamento = 0;
+                                    neto.balanceamento = 0; break;
+
+                                case 1:
+                                    p.balanceamento = 0; //Inseriu X2
+                                    filho.balanceamento = -1;
+                                    neto.balanceamento = 0; break;
+
+                                case 0:
+                                    p.balanceamento = 0; //Inseriu B
+                                    filho.balanceamento = 0;
+                                    neto.balanceamento = 0;
+                            }
+
+                            p = neto; //B
+                            this.mudouAltura = false;
+                        } else {
+                            //Rotação Simples EE:
+                            No filho = p.esq; //A
+                            p.esq = filho.dir; //S2
+                            filho.dir = p; //B
+
+                            p.balanceamento = 0;
+                            filho.balanceamento = 0;
+
+                            p = filho; //A
+                            this.mudouAltura = false;
+                        }
+                }
+            }
+        } else { //reg.compara(p.reg) > 0
+            p.dir = insere(reg, p.dir, profundidade + 1, ok);
+
+            if(this.mudouAltura) { //Precisa rebalancear
+                switch(p.balanceamento) {
+                    case -1:
+                        p.balanceamento = 0;
+                        this.mudouAltura = false; break;
+
+                    case 0:
+                        p.balanceamento = 1; break; //mudouAltura continua true
+
+                    case 1: //Precisa rebalancear!!
+                        if(p.dir.balanceamento == -1) {
+
+                            //Rotação Dupla DE:
+                            No filho = p.dir; //C
+                            No neto = filho.esq; //B
+
+                            p.dir = neto.esq; //S2
+                            neto.esq = p; //A
+                            filho.esq = neto.dir; //S3
+                            neto.dir = filho; //C
+
+                            switch(neto.balanceamento) {
+                                case -1:
+                                    p.balanceamento = 0;
+                                    filho.balanceamento = 1; //Inseriu X1
+                                    neto.balanceamento = 0; break;
+
+                                case 1:
+                                    p.balanceamento = -1; //Inseriu X2
+                                    filho.balanceamento = 0;
+                                    neto.balanceamento = 0; break;
+
+                                case 0:
+                                    p.balanceamento = 0; //Inseriu B
+                                    filho.balanceamento = 0;
+                                    neto.balanceamento = 0; break;
+                            }
+
+                            p = neto; //B
+                            this.mudouAltura = false;
+
+                        } else {
+                            //Rotação Simples DD:
+                            No filho = p.dir; //B
+                            p.dir = filho.esq; //S2
+                            filho.esq = p; //A
+
+                            p.balanceamento = 0;
+                            filho.balanceamento = 0;
+
+                            p = filho; //B
+                            this.mudouAltura = false;
+                        }
+                }
+            }
+
+        }
+        return p;
     }
 
     public ArvoreBBB ordenaABB() {
@@ -65,20 +195,6 @@ public class ArvoreBBB {
         if(node.dir != null) percorreABB(vetor, node.dir);
     }
 
-    private No insere(Item reg, No p, int profundidade) {
-        if (p == null) {
-            p = new No();
-            p.reg = reg;
-            p.esq = null;
-            p.dir = null;
-            p.profundidade = profundidade;
-
-        } else if (reg.compara(p.reg) < 0) p.esq = insere(reg, p.esq, profundidade+1);
-        else if (reg.compara(p.reg) > 0) p.dir = insere(reg, p.dir, profundidade+1);
-        else System.out.println("Erro: Registro ja existente");
-        return p;
-    }
-
     private No antecessor(No q, No r) {
         if (r.dir != null) r.dir = antecessor(q, r.dir);
         else {
@@ -86,14 +202,6 @@ public class ArvoreBBB {
             r = r.esq;
         }
         return r;
-    }
-
-    private void central(No p) { //Em-Ordem
-        if (p != null) {
-            central(p.esq);
-            System.out.println(p.reg.toString());
-            central(p.dir);
-        }
     }
 
     private Item pesquisa(Item reg, No p) {
@@ -124,38 +232,11 @@ public class ArvoreBBB {
     }
 
     public void insere(Item reg) {
-        this.raiz = this.insere(reg, this.raiz, 1);
+        this.raiz = this.insere(reg, this.raiz, 1, true);
     }
 
     public void retira(Item reg) {
         this.raiz = this.retira(reg, this.raiz);
-    }
-
-    public void imprime() {
-        this.central(this.raiz);
-    }
-
-    // @{\it M\'etodo para testar o funcionamento da classe}@
-    private void testa(No p) {
-        if (p == null) return;
-        if (p.esq != null) {
-            if (p.reg.compara(p.esq.reg) < 0) {
-                System.out.println("Erro: Pai " + p.reg.toString() + " menor que filho a esquerda " + p.esq.reg.toString());
-                System.exit(1);
-            }
-        }
-        if (p.dir != null) {
-            if (p.reg.compara(p.dir.reg) > 0) {
-                System.out.println("Erro: Pai " + p.reg.toString() + " maior que filho a direita " + p.dir.reg.toString());
-                System.exit(1);
-            }
-        }
-        testa(p.esq);
-        testa(p.dir);
-    }
-
-    public void testa() {
-        this.testa(this.raiz);
     }
 
     public Item alteraChave(Item chave, Object novaChave) {
