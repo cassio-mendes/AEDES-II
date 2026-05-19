@@ -178,13 +178,6 @@ public class ArvoreAVL {
         return p;
     }
 
-    private Item pesquisa(Item reg, No p) {
-        if (p == null) return null; // @{\it Registro n\~ao econtrado}@
-        else if (reg.compara(p.reg) < 0) return pesquisa(reg, p.esq);
-        else if (reg.compara(p.reg) > 0) return pesquisa(reg, p.dir);
-        else return p.reg;
-    }
-
     private No retira(Item reg, No p) {
         if (p == null) {
             System.out.println("Erro: Registro nao encontrado");
@@ -396,10 +389,6 @@ public class ArvoreAVL {
     }
 
     public String checkAVL() { return checkAVL(this.raiz) ? "Sim" : "Não"; }
-
-    public Item pesquisa(Item reg) {
-        return this.pesquisa(reg, this.raiz);
-    }
 
     public void insere(Item reg) {
         this.raiz = this.insere(reg, this.raiz, true);
