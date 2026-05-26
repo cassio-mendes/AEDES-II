@@ -8,13 +8,14 @@ public class Testes {
         for (int i = 1; i < 15; i++) {
             arvore.insere(new MeuItem(i));
         }
+        arvore.preenchePai();
         arvore.printArvore();
 
         //Questão 2
         arvore.retira(new MeuItem(10));
         arvore.retira(new MeuItem(2));
         arvore.retira(new MeuItem(9));
-        System.out.println("Questão 2:");
+        System.out.println("\nQuestão 2:");
         arvore.printArvore();
 
         //Questão 3
@@ -25,13 +26,14 @@ public class Testes {
             arvore2.insere(new MeuItem(nums[i]));
         }
 
-        System.out.println("Questão 3:");
+        System.out.println("\nQuestão 3:");
+        arvore2.preenchePai();
         arvore2.printArvore();
-        System.out.println();
+        System.out.println("\nPrint em níveis");
         arvore2.printNiveis();
 
         //Questão 4 a)
-        System.out.println("Questão 4:");
+        System.out.println("\nQuestão 4:");
         System.out.println("Altura do nó 90: " + arvore2.getAltura(new MeuItem(90)));
         System.out.println("Altura do nó 70: " + arvore2.getAltura(new MeuItem(70)));
         System.out.println("Altura do nó 87: " + arvore2.getAltura(new MeuItem(87)));

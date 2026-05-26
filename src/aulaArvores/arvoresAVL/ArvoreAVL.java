@@ -308,7 +308,8 @@ public class ArvoreAVL {
 
         while(!fila.isEmpty()) {
             item = fila.poll();
-            System.out.print(item.reg.recuperaChave() + " ");
+            Object pai = item.pai == null ? null : item.pai.reg.recuperaChave();
+            System.out.println("Valor: " + item.reg.recuperaChave() + " | Pai: " + pai);
 
             if(item.esq != null) fila.add(item.esq);
             if(item.dir != null) fila.add(item.dir);
