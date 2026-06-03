@@ -1,5 +1,6 @@
 package aulaArvores.arvoresTrie;
 
+import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -91,10 +92,25 @@ public class Trie<Value> {
     }
 
     //Retorna uma coleção com todas as chaves que 'casam' com s quando '.' é um coringa
-    /*Exemplos: Se s == "s.e", a coleção poderia incluir "she" e "see"
+    //Exemplos: Se s == "s.e", a coleção poderia incluir "she" e "see"
     public Iterable<String> keysThatMatch(String s) {
+        Queue<String> queue = new ArrayDeque<>();
+        char c = s.charAt(0);
+        String chave = String.valueOf(c);
 
-    }*/
+        return keysThatMatch(s, chave, 0, this.raiz, queue);
+    }
+
+    private Iterable<String> keysThatMatch(String s, String chave, int d, No<Value> x, Queue<String> queue) {
+        if(x == null) return null;
+
+        if(x.value != null) {
+            queue.add(chave);
+        }
+
+        char c = s.charAt(d);
+
+    }
 
     /*Retorna o prefixo mais longo com valor não nulo da chave s
     public String longestPrefixOf(String s) {
