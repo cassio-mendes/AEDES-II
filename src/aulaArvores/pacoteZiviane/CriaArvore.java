@@ -27,6 +27,9 @@ public class CriaArvore {
         System.out.print("A árvore é uma ABB: ");
         System.out.println(dicionario.checkBST());
 
+        System.out.print("A árvore é uma AVL: ");
+        System.out.println(dicionario.checkAVL());
+
         ArvoreBinaria arvoreBalanceada = dicionario.ordenaABB();
         System.out.println("Nova árvore:");
         arvoreBalanceada.imprime();

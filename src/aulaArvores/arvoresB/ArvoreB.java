@@ -98,6 +98,7 @@ public class ArvoreB {
             }
 
         }
+        return null;
     }
 
     private void retira(Item reg, Pagina ap) {

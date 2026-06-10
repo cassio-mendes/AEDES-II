@@ -1,5 +1,7 @@
 package aulaArvores.pacoteZiviane;
 
+import aulaArvores.arvoresAVL.ArvoreAVL;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -188,6 +190,28 @@ public class ArvoreBinaria {
         if(celula.dir != null) return checkBST(celula.dir);
 
         return true;
+    }
+
+    public boolean checkAVL() { return checkAVL(this.raiz); }
+
+    private boolean checkAVL(No p) {
+        int alturaEsq, alturaDir, diferenca;
+        alturaEsq = p.esq == null ? 0 : (calcularAltura(p.esq, 0, 0) + 1);
+        alturaDir = p.dir == null ? 0 : (calcularAltura(p.dir, 0, 0) + 1);
+        diferenca = alturaDir - alturaEsq;
+
+        if(diferenca <= -2 || diferenca >= 2) return false;
+        if(p.esq != null) checkAVL(p.esq);
+        if(p.dir != null) checkAVL(p.dir);
+
+        return true;
+    }
+
+    private int calcularAltura(No p, int alturaEsq, int alturaDir) {
+        if(p.esq != null) alturaEsq = calcularAltura(p.esq, alturaEsq+1, alturaDir);
+        if(p.dir != null) alturaDir = calcularAltura(p.dir, alturaEsq, alturaDir+1);
+
+        return  Math.max(alturaEsq, alturaDir);
     }
 
 }

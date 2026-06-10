@@ -109,7 +109,7 @@ public class Trie<Value> {
         }
 
         char c = s.charAt(d);
-
+        return null;
     }
 
     /*Retorna o prefixo mais longo com valor não nulo da chave s
