@@ -15,15 +15,27 @@ public class ArvoreB {
     }
 
     private Pagina raiz;
-    private int m, mm;
+    private int mm;
 
     //m é o número de mínimo registros (ordem) de cada página, exceto a raiz:
     //Raiz: Mínimo == 1; Máximo == 2*m
     //Demais páginas: Mínimo == m; Máximo == 2*m
     public ArvoreB(int m) {
         this.raiz = null;
-        this.m = m;
         this.mm = 2*m;
+    }
+
+    public void printEmOrdem() { printEmOrdem(this.raiz); }
+
+    private void printEmOrdem(Pagina ap) {
+        if(ap == null) return; //Se não houver uma página, retorna
+
+        //Percorre todos os ponteiros e registros em ordem crescente
+        for(int i = 0; i < ap.n; i++) {
+            printEmOrdem(ap.p[i]);
+            System.out.println("Item: " + i);
+        }
+        printEmOrdem(ap.p[ap.n]); //Vai ao último ponteiro da página
     }
 
     public Item pesquisa(Item reg) { return pesquisa(reg, this.raiz); }
